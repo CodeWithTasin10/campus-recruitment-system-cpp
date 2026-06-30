@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Campus Recruitment System</title>
     <style>
-        /* ================================================================
-           LIGHT GRAY PROFESSIONAL THEME – Clean & Minimal
-           ================================================================ */
+        
+      /*--Theme--*/
+        
         * {
             margin: 0;
             padding: 0;
@@ -340,7 +340,7 @@
             color: #1e40af;
         }
 
-        /* ----- SUCCESS BOX (Registration) ----- */
+        /* ----- Registration ----- */
         .success-box {
             background: #ecfdf5;
             border: 2px solid #16a34a;
@@ -396,7 +396,7 @@
             margin-top: 2px;
         }
 
-        /* ----- FOOTER / DEV CREDIT ----- */
+        /* ----- FOOTER ----- */
         .footer-credit {
             margin-top: 32px;
             padding-top: 16px;
@@ -504,7 +504,6 @@
         <div id="mainView">
             <h1>🏛️ <span class="highlight">Campus</span> Recruitment System</h1>
 
-            <!-- Quick Actions Card -->
             <div class="card" style="max-width:480px;">
                 <h3>🔐 Quick Access</h3>
                 <button class="btn btn-primary btn-block" onclick="showAdminLogin()">Admin Login</button>
@@ -515,13 +514,13 @@
                 <button class="btn btn-outline btn-block" onclick="showStudentLogin()">🔑 Student Login</button>
             </div>
 
-            <!-- Footer Credit (no about section) -->
+            <!-- Footer -->
             <div class="footer-credit">
                 Developed by <strong>Mashfek Uddin Tasin</strong>
             </div>
         </div>
 
-        <!-- ====== DYNAMIC VIEW (for login/register/dashboard) ====== -->
+        <!-- ======  login/register/dashboard ====== -->
         <div id="dynamicView"></div>
     </div>
 
@@ -529,7 +528,7 @@
         // ======================================================================
         //   DATA LAYER – localStorage persistence
         // ======================================================================
-
+        
         const DB = {
             get(key) { return JSON.parse(localStorage.getItem(key) || '[]'); },
             set(key, data) { localStorage.setItem(key, JSON.stringify(data)); },
@@ -572,9 +571,7 @@
             }
         };
 
-        // ======================================================================
-        //   APP STATE
-        // ======================================================================
+        
 
         let currentUser = null;
 
@@ -1441,10 +1438,6 @@
                 <button class="btn btn-outline" onclick="adminDashboard()">← Back</button>
             `);
         }
-
-        // ======================================================================
-        //   INIT
-        // ======================================================================
 
         updateNav();
 
