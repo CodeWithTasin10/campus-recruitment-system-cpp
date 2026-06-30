@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Recruitment System</title>
+    <style>
+        /* ================================================================
+           LIGHT GRAY PROFESSIONAL THEME – Clean & Minimal
+           ================================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding: 24px;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 28px 32px;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e9edf2;
+        }
+
+        /* ----- NAVBAR ----- */
+        .navbar {
+            background: #ffffff;
+            padding: 12px 0;
+            margin-bottom: 28px;
+            border-bottom: 2px solid #f0f2f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .navbar .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.3px;
+        }
+
+        .navbar .brand span {
+            color: #2563eb;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .navbar ul li a {
+            color: #475569;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .navbar ul li a:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        /* ----- TYPOGRAPHY ----- */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        h1 .highlight {
+            color: #2563eb;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 18px;
+            border-left: 4px solid #2563eb;
+            padding-left: 14px;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        /* ----- CARDS ----- */
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            border: 1px solid #e9edf2;
+            transition: 0.15s;
+        }
+
+        .card:hover {
+            border-color: #cbd5e1;
+        }
+
+        .card-header {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ----- BUTTONS ----- */
+        .btn {
+            display: inline-block;
+            padding: 9px 22px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-success {
+            background: #16a34a;
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #2563eb;
+            color: #2563eb;
+        }
+
+        .btn-outline:hover {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 5px 14px;
+            font-size: 0.8rem;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        /* ----- FORMS ----- */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 460px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1e293b;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 10px 14px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: 0.15s;
+            background: #fafbfc;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: #fff;
+        }
+
+        .form-group textarea {
+            min-height: 72px;
+            resize: vertical;
+        }
+
+        /* ----- TABLE ----- */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid #e9edf2;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        table th {
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e9edf2;
+        }
+
+        table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table tr:hover td {
+            background: #f8fafc;
+        }
+
+        /* ----- BADGES ----- */
+        .badge {
+            display: inline-block;
+            padding: 3px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-applied {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-selected {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-open {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-closed {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .badge-filled {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* ----- ALERT ----- */
+        .alert {
+            padding: 12px 18px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 5px solid;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #ecfdf5;
+            border-color: #16a34a;
+            color: #14532d;
+        }
+
+        .alert-error {
+            background: #fef2f2;
+            border-color: #dc2626;
+            color: #991b1b;
+        }
+
+        .alert-info {
+            background: #eff6ff;
+            border-color: #2563eb;
+            color: #1e40af;
+        }
+
+        /* ----- SUCCESS BOX (Registration) ----- */
+        .success-box {
+            background: #ecfdf5;
+            border: 2px solid #16a34a;
+            border-radius: 14px;
+            padding: 28px;
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .success-box .big-id {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #166534;
+            margin: 8px 0;
+            letter-spacing: 2px;
+        }
+
+        .success-box p {
+            font-size: 1rem;
+            color: #1e293b;
+        }
+
+        /* ----- STAT CARDS ----- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 14px;
+            margin: 16px 0;
+        }
+
+        .stat-card {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #e9edf2;
+            text-align: center;
+            transition: 0.15s;
+        }
+
+        .stat-card:hover {
+            border-color: #cbd5e1;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        /* ----- FOOTER / DEV CREDIT ----- */
+        .footer-credit {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 2px solid #f0f2f5;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .footer-credit strong {
+            color: #475569;
+        }
+
+        /* ----- UTILITY ----- */
+        .hidden {
+            display: none !important;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .gap-10 {
+            gap: 10px;
+        }
+
+        .mt-16 {
+            margin-top: 16px;
+        }
+
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                padding: 16px;
+                border-radius: 16px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 8px 0;
+            }
+
+            .navbar ul {
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .success-box .big-id {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="app">
+        <!-- ====== NAVBAR ====== -->
+        <div class="navbar">
+            <div class="brand">🎓 <span>Campus</span> Recruitment</div>
+            <ul id="navLinks">
+                <li><a onclick="showMain()">🏠 Home</a></li>
+            </ul>
+        </div>
+
+        <!-- ====== MAIN VIEW (Front Page) ====== -->
+        <div id="mainView">
+            <h1>🏛️ <span class="highlight">Campus</span> Recruitment System</h1>
+
+            <!-- Quick Actions Card -->
+            <div class="card" style="max-width:480px;">
+                <h3>🔐 Quick Access</h3>
+                <button class="btn btn-primary btn-block" onclick="showAdminLogin()">Admin Login</button>
+                <button class="btn btn-outline btn-block" onclick="showCompanyRegister()">🏢 Company Register</button>
+                <button class="btn btn-outline btn-block" onclick="showCompanyLogin()">🔑 Company Login</button>
+                <button class="btn btn-outline btn-block" onclick="showStudentRegister()">👨‍🎓 Student
+                    Register</button>
+                <button class="btn btn-outline btn-block" onclick="showStudentLogin()">🔑 Student Login</button>
+            </div>
+
+            <!-- Footer Credit (no about section) -->
+            <div class="footer-credit">
+                Developed by <strong>Mashfek Uddin Tasin</strong>
+            </div>
+        </div>
+
+        <!-- ====== DYNAMIC VIEW (for login/register/dashboard) ====== -->
+        <div id="dynamicView"></div>
+    </div>
+
+    <script>
+        // ======================================================================
+        //   DATA LAYER – localStorage persistence
+        // ======================================================================
+
+        const DB = {
+            get(key) { return JSON.parse(localStorage.getItem(key) || '[]'); },
+            set(key, data) { localStorage.setItem(key, JSON.stringify(data)); },
+
+            students() { return this.get('students'); },
+            companies() { return this.get('companies'); },
+            jobs() { return this.get('jobs'); },
+            applications() { return this.get('applications'); },
+
+            saveStudents(s) { this.set('students', s); },
+            saveCompanies(c) { this.set('companies', c); },
+            saveJobs(j) { this.set('jobs', j); },
+            saveApplications(a) { this.set('applications', a); },
+
+            // IDs: Student 101, 102…  |  Company 501, 502…  |  Job 1, 2, 3…
+            nextStudentId() {
+                let s = this.students();
+                if (!s.length) return 101;
+                return Math.max(...s.map(st => st.id)) + 1;
+            },
+            nextCompanyId() {
+                let c = this.companies();
+                if (!c.length) return 501;
+                return Math.max(...c.map(co => co.id)) + 1;
+            },
+            nextJobId() {
+                let j = this.jobs();
+                if (!j.length) return 1;
+                return Math.max(...j.map(jo => jo.jobId)) + 1;
+            },
+
+            getStudentApps(sid) {
+                return this.applications().filter(a => a.studentId === sid);
+            },
+            getJobApps(jid) {
+                return this.applications().filter(a => a.jobId === jid);
+            },
+            hasApplied(sid, jid) {
+                return this.applications().some(a => a.studentId === sid && a.jobId === jid);
+            }
+        };
+
+        // ======================================================================
+        //   APP STATE
+        // ======================================================================
+
+        let currentUser = null;
+
+        // ======================================================================
+        //   HELPERS
+        // ======================================================================
+
+        function render(html) {
+            document.getElementById('dynamicView').innerHTML = html;
+        }
+
+        function showView(html) {
+            document.getElementById('mainView').classList.add('hidden');
+            render(html);
+        }
+
+        function showMain() {
+            document.getElementById('mainView').classList.remove('hidden');
+            render('');
+            updateNav();
+        }
+
+        function showAlert(msg, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `alert alert-${type}`;
+            div.textContent = msg;
+            const container = document.getElementById('dynamicView');
+            container.prepend(div);
+            setTimeout(() => div.remove(), 5000);
+        }
+
+        function formatJobId(id) {
+            return id < 10 ? '0' + id : '' + id;
+        }
+
+        // ======================================================================
+        //   NAVIGATION
+        // ======================================================================
+
+        function updateNav() {
+            const nav = document.getElementById('navLinks');
+            let html = `<li><a onclick="showMain()">🏠 Home</a></li>`;
+            if (currentUser) {
+                if (currentUser.type === 'student') {
+                    html += `<li><a onclick="studentDashboard()">📊 Dashboard</a></li>`;
+                    html += `<li><a onclick="logout()">🚪 Logout (${currentUser.id})</a></li>`;
+                } else if (currentUser.type === 'company') {
+                    html += `<li><a onclick="companyDashboard()">📊 Dashboard</a></li>`;
+                    html += `<li><a onclick="logout()">🚪 Logout (${currentUser.id})</a></li>`;
+                } else if (currentUser.type === 'admin') {
+                    html += `<li><a onclick="adminDashboard()">⚙️ Admin</a></li>`;
+                    html += `<li><a onclick="logout()">🚪 Logout</a></li>`;
+                }
+            } else {
+                html += `<li><a onclick="showAdminLogin()">🔐 Admin</a></li>`;
+                html += `<li><a onclick="showCompanyLogin()">🏢 Company</a></li>`;
+                html += `<li><a onclick="showStudentLogin()">👨‍🎓 Student</a></li>`;
+            }
+            html += `<li><a onclick="showAboutPage()">ℹ️ About</a></li>`;
+            nav.innerHTML = html;
+        }
+
+        function showAboutPage() {
+            showView(`
+                <div style="max-width:640px;margin:0 auto;">
+                    <div style="background:#f8fafc;border-radius:14px;padding:28px;border:1px solid #e9edf2;">
+                        <h3>📌 About Campus Recruitment System</h3>
+                        <p style="font-size:1.05rem;line-height:1.8;color:#334155;">
+                            <strong>Campus Recruitment System</strong> is a complete OOP-based solution
+                            for managing student placements, company job postings, and hiring workflows.
+                            Built with pure HTML, CSS, and JavaScript – all data is stored locally in your browser.
+                        </p>
+                        <p style="font-size:1.05rem;line-height:1.8;margin-top:10px;color:#334155;">
+                            🎯 <strong>Key Features:</strong> Student/Company Registration & Login,
+                            Job Posting, Apply for Jobs, Hire/Reject Candidates, Placement Reports.
+                        </p>
+                        <p style="margin-top:14px;font-size:1.05rem;color:#2563eb;font-weight:600;">
+                            👨‍💻 Developed by <strong>Mashfek Uddin Tasin</strong>
+                        </p>
+                        <button class="btn btn-outline mt-16" onclick="showMain()">← Back to Home</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function logout() {
+            currentUser = null;
+            showMain();
+            updateNav();
+        }
+
+        // ======================================================================
+        //   AUTH VIEWS
+        // ======================================================================
+
+        function showAdminLogin() {
+            showView(`
+                <h2>🔐 Admin Login</h2>
+                <form onsubmit="adminLogin(event)">
+                    <div class="form-group"><label>Password</label><input type="password" id="adminPass" placeholder="Enter admin password" required></div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            `);
+        }
+
+        function adminLogin(e) {
+            e.preventDefault();
+            const pass = document.getElementById('adminPass').value;
+            if (pass === 'admin123') {
+                currentUser = { type: 'admin', id: 1 };
+                updateNav();
+                adminDashboard();
+                showAlert('✅ Admin logged in', 'success');
+            } else {
+                showAlert('❌ Wrong password!', 'error');
+            }
+        }
+
+        // ---- Company ----
+        function showCompanyRegister() {
+            showView(`
+                <h2>🏢 Company Registration</h2>
+                <form onsubmit="companyRegister(event)">
+                    <div class="form-group"><label>Company Name</label><input type="text" id="compName" required></div>
+                    <div class="form-group"><label>Password</label><input type="password" id="compPass" required></div>
+                    <button type="submit" class="btn btn-success">Register</button>
+                </form>
+            `);
+        }
+
+        function companyRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('compName').value;
+            const pass = document.getElementById('compPass').value;
+            const companies = DB.companies();
+            const id = DB.nextCompanyId();
+            companies.push({ id, name, password: pass });
+            DB.saveCompanies(companies);
+            showView(`
+                <div class="success-box">
+                    <h2>✅ Registration Successful!</h2>
+                    <p>Your Company ID is:</p>
+                    <div class="big-id">${id}</div>
+                    <p style="margin-top:8px;">📌 Please note this ID – you will need it to log in.</p>
+                    <button class="btn btn-primary" onclick="showCompanyLogin()">🔑 Go to Login</button>
+                    <button class="btn btn-outline" onclick="showMain()">🏠 Home</button>
+                </div>
+            `);
+            showAlert(`Company registered! ID: ${id}`, 'success');
+        }
+
+        function showCompanyLogin() {
+            showView(`
+                <h2>🔑 Company Login</h2>
+                <form onsubmit="companyLogin(event)">
+                    <div class="form-group"><label>Company ID</label><input type="number" id="compLoginId" required></div>
+                    <div class="form-group"><label>Password</label><input type="password" id="compLoginPass" required></div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            `);
+        }
+
+        function companyLogin(e) {
+            e.preventDefault();
+            const id = parseInt(document.getElementById('compLoginId').value);
+            const pass = document.getElementById('compLoginPass').value;
+            const companies = DB.companies();
+            const comp = companies.find(c => c.id === id && c.password === pass);
+            if (comp) {
+                currentUser = { type: 'company', id: id };
+                updateNav();
+                companyDashboard();
+                showAlert(`✅ Welcome ${comp.name}`, 'success');
+            } else {
+                showAlert('❌ Invalid credentials!', 'error');
+            }
+        }
+
+        // ---- Student ----
+        function showStudentRegister() {
+            showView(`
+                <h2>👨‍🎓 Student Registration</h2>
+                <form onsubmit="studentRegister(event)">
+                    <div class="form-group"><label>Name</label><input type="text" id="stuName" required></div>
+                    <div class="form-group"><label>Password</label><input type="password" id="stuPass" required></div>
+                    <div class="form-group"><label>Department</label><input type="text" id="stuDept" required></div>
+                    <div class="form-group"><label>CGPA</label><input type="number" step="0.01" id="stuCgpa" required></div>
+                    <button type="submit" class="btn btn-success">Register</button>
+                </form>
+            `);
+        }
+
+        function studentRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('stuName').value;
+            const pass = document.getElementById('stuPass').value;
+            const dept = document.getElementById('stuDept').value;
+            const cgpa = parseFloat(document.getElementById('stuCgpa').value);
+            const students = DB.students();
+            const id = DB.nextStudentId();
+            students.push({ id, name, password: pass, dept, cgpa, skills: [], placed: false });
+            DB.saveStudents(students);
+            showView(`
+                <div class="success-box">
+                    <h2>✅ Registration Successful!</h2>
+                    <p>Your Student ID is:</p>
+                    <div class="big-id">${id}</div>
+                    <p style="margin-top:8px;">📌 Please note this ID – you will need it to log in.</p>
+                    <button class="btn btn-primary" onclick="showStudentLogin()">🔑 Go to Login</button>
+                    <button class="btn btn-outline" onclick="showMain()">🏠 Home</button>
+                </div>
+            `);
+            showAlert(`Student registered! ID: ${id}`, 'success');
+        }
+
+        function showStudentLogin() {
+            showView(`
+                <h2>🔑 Student Login</h2>
+                <form onsubmit="studentLogin(event)">
+                    <div class="form-group"><label>Student ID</label><input type="number" id="stuLoginId" required></div>
+                    <div class="form-group"><label>Password</label><input type="password" id="stuLoginPass" required></div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            `);
+        }
+
+        function studentLogin(e) {
+            e.preventDefault();
+            const id = parseInt(document.getElementById('stuLoginId').value);
+            const pass = document.getElementById('stuLoginPass').value;
+            const students = DB.students();
+            const stu = students.find(s => s.id === id && s.password === pass);
+            if (stu) {
+                currentUser = { type: 'student', id: id };
+                updateNav();
+                studentDashboard();
+                showAlert(`✅ Welcome ${stu.name}`, 'success');
+            } else {
+                showAlert('❌ Invalid credentials!', 'error');
+            }
+        }
+
+        // ======================================================================
+        //   STUDENT DASHBOARD
+        // ======================================================================
+
+        function studentDashboard() {
+            const students = DB.students();
+            const stu = students.find(s => s.id === currentUser.id);
+            if (!stu) { logout(); return; }
+
+            let html = `
+                <h2>👨‍🎓 Student Dashboard</h2>
+                <div class="card">
+                    <div class="card-header">👤 Profile</div>
+                    <p><strong>ID:</strong> ${stu.id}</p>
+                    <p><strong>Name:</strong> ${stu.name}</p>
+                    <p><strong>Dept:</strong> ${stu.dept}</p>
+                    <p><strong>CGPA:</strong> ${stu.cgpa}</p>
+                    <p><strong>Placed:</strong> ${stu.placed ? '✅ YES' : '❌ NO'}</p>
+                    <p><strong>Skills:</strong> ${stu.skills.length ? stu.skills.join(', ') : 'None'}</p>
+                    <div class="flex flex-wrap gap-10" style="margin-top:10px;">
+                        <button class="btn btn-primary" onclick="studentEditProfile()">✏️ Edit</button>
+                        <button class="btn btn-outline" onclick="studentUploadSkills()">📝 Skills</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">💼 Actions</div>
+                    <div class="flex flex-wrap gap-10">
+                        <button class="btn btn-primary" onclick="studentViewJobs()">📋 Jobs</button>
+                        <button class="btn btn-success" onclick="studentApplyJob()">📩 Apply</button>
+                        <button class="btn btn-primary" onclick="studentViewApplications()">📊 My Apps</button>
+                    </div>
+                </div>
+            `;
+            showView(html);
+        }
+
+        function studentEditProfile() {
+            const students = DB.students();
+            const stu = students.find(s => s.id === currentUser.id);
+            if (!stu) return;
+            showView(`
+                <h2>✏️ Edit Profile</h2>
+                <form onsubmit="studentSaveProfile(event)">
+                    <div class="form-group"><label>Name</label><input type="text" id="editName" value="${stu.name}" required></div>
+                    <div class="form-group"><label>Password</label><input type="password" id="editPass" value="${stu.password}" required></div>
+                    <div class="form-group"><label>Dept</label><input type="text" id="editDept" value="${stu.dept}" required></div>
+                    <div class="form-group"><label>CGPA</label><input type="number" step="0.01" id="editCgpa" value="${stu.cgpa}" required></div>
+                    <div class="flex flex-wrap gap-10">
+                        <button type="submit" class="btn btn-success">💾 Save</button>
+                        <button type="button" class="btn btn-outline" onclick="studentDashboard()">Cancel</button>
+                    </div>
+                </form>
+            `);
+        }
+
+        function studentSaveProfile(e) {
+            e.preventDefault();
+            const students = DB.students();
+            const stu = students.find(s => s.id === currentUser.id);
+            if (!stu) return;
+            stu.name = document.getElementById('editName').value;
+            stu.password = document.getElementById('editPass').value;
+            stu.dept = document.getElementById('editDept').value;
+            stu.cgpa = parseFloat(document.getElementById('editCgpa').value);
+            DB.saveStudents(students);
+            showAlert('✅ Profile updated!', 'success');
+            studentDashboard();
+        }
+
+        function studentUploadSkills() {
+            const students = DB.students();
+            const stu = students.find(s => s.id === currentUser.id);
+            if (!stu) return;
+            showView(`
+                <h2>📝 Upload Skills</h2>
+                <p><strong>Current:</strong> ${stu.skills.length ? stu.skills.join(', ') : 'None'}</p>
+                <form onsubmit="studentAddSkill(event)">
+                    <div class="form-group"><label>Skill (type 'done' to finish)</label><input type="text" id="skillInput" placeholder="e.g. C++"></div>
+                    <div class="flex flex-wrap gap-10">
+                        <button type="submit" class="btn btn-primary">➕ Add</button>
+                        <button type="button" class="btn btn-success" onclick="studentFinishSkills()">✅ Done</button>
+                    </div>
+                </form>
+                <div id="skillList" style="margin-top:10px;"></div>
+            `);
+            window._tempSkills = stu.skills.slice();
+            renderSkillList();
+        }
+
+        function renderSkillList() {
+            const div = document.getElementById('skillList');
+            if (!div) return;
+            const skills = window._tempSkills || [];
+            div.innerHTML = skills.map(s => `<span class="badge badge-applied" style="margin:3px;">${s}</span>`).join(' ');
+        }
+
+        function studentAddSkill(e) {
+            e.preventDefault();
+            const input = document.getElementById('skillInput');
+            const skill = input.value.trim();
+            if (skill && skill !== 'done') {
+                window._tempSkills.push(skill);
+                input.value = '';
+                renderSkillList();
+            }
+        }
+
+        function studentFinishSkills() {
+            const students = DB.students();
+            const stu = students.find(s => s.id === currentUser.id);
+            if (!stu) return;
+            stu.skills = window._tempSkills || [];
+            DB.saveStudents(students);
+            showAlert('✅ Skills updated!', 'success');
+            studentDashboard();
+        }
+
+        function studentViewJobs() {
+            const jobs = DB.jobs();
+            const openJobs = jobs.filter(j => j.open);
+            if (!openJobs.length) {
+                showView(`<h2>📋 Jobs</h2><p>No open jobs.</p><button class="btn btn-outline" onclick="studentDashboard()">← Back</button>`);
+                return;
+            }
+            const companies = DB.companies();
+            let html = `<h2>📋 Available Jobs</h2><div class="table-wrap"><table>
+                <tr><th>Job ID</th><th>Title</th><th>Company</th><th>Status</th></tr>`;
+            openJobs.forEach(j => {
+                const comp = companies.find(c => c.id === j.companyId);
+                const isFilled = DB.getJobApps(j.jobId).some(a => a.status === 'Selected');
+                html += `<tr>
+                    <td>${formatJobId(j.jobId)}</td>
+                    <td>${j.title}</td>
+                    <td>${comp ? comp.name : 'Unknown'}</td>
+                    <td><span class="badge ${isFilled ? 'badge-filled' : 'badge-open'}">${isFilled ? 'Position Filled' : 'Open'}</span></td>
+                </tr>`;
+            });
+            html += `</table></div><button class="btn btn-outline" onclick="studentDashboard()">← Back</button>`;
+            showView(html);
+        }
+
+        function studentApplyJob() {
+            const jobs = DB.jobs();
+            const available = jobs.filter(j => j.open && !DB.getJobApps(j.jobId).some(a => a.status === 'Selected'));
+            if (!available.length) {
+                showAlert('No open jobs available.', 'info');
+                studentDashboard();
+                return;
+            }
+            let html = `<h2>📩 Apply for Job</h2><form onsubmit="studentSubmitApply(event)">
+                <div class="form-group"><label>Select Job</label><select id="applyJobId">`;
+            available.forEach(j => {
+                html += `<option value="${j.jobId}">${formatJobId(j.jobId)} - ${j.title}</option>`;
+            });
+            html += `</select></div>
+                <div class="flex flex-wrap gap-10">
+                    <button type="submit" class="btn btn-success">📩 Apply</button>
+                    <button type="button" class="btn btn-outline" onclick="studentDashboard()">Cancel</button>
+                </div>
+            </form>`;
+            showView(html);
+        }
+
+        function studentSubmitApply(e) {
+            e.preventDefault();
+            const jid = parseInt(document.getElementById('applyJobId').value);
+            const sid = currentUser.id;
+
+            if (DB.hasApplied(sid, jid)) {
+                showAlert('❌ Already applied!', 'error');
+                return;
+            }
+            const students = DB.students();
+            const stu = students.find(s => s.id === sid);
+            if (stu && stu.placed) {
+                showAlert('❌ Already placed!', 'error');
+                return;
+            }
+            const job = DB.jobs().find(j => j.jobId === jid);
+            if (!job || !job.open || DB.getJobApps(jid).some(a => a.status === 'Selected')) {
+                showAlert('❌ Job unavailable!', 'error');
+                return;
+            }
+            const apps = DB.applications();
+            apps.push({ studentId: sid, jobId: jid, status: 'Applied' });
+            DB.saveApplications(apps);
+            showAlert('✅ Application submitted!', 'success');
+            studentDashboard();
+        }
+
+        function studentViewApplications() {
+            const sid = currentUser.id;
+            const apps = DB.getStudentApps(sid);
+            if (!apps.length) {
+                showView(`<h2>📊 My Applications</h2><p>No applications.</p><button class="btn btn-outline" onclick="studentDashboard()">← Back</button>`);
+                return;
+            }
+            const jobs = DB.jobs();
+            let html = `<h2>📊 My Applications</h2><div class="table-wrap"><table>
+                <tr><th>Job ID</th><th>Title</th><th>Result</th></tr>`;
+            apps.forEach(a => {
+                const job = jobs.find(j => j.jobId === a.jobId);
+                let cls = 'badge-applied', label = a.status;
+                if (a.status === 'Selected') { cls = 'badge-selected'; }
+                else if (a.status === 'Rejected') { cls = 'badge-rejected'; }
+                html += `<tr><td>${formatJobId(a.jobId)}</td><td>${job ? job.title : 'Unknown'}</td><td><span class="badge ${cls}">${label}</span></td></tr>`;
+            });
+            html += `</table></div><button class="btn btn-outline" onclick="studentDashboard()">← Back</button>`;
+            showView(html);
+        }
+
+        // ======================================================================
+        //   COMPANY DASHBOARD
+        // ======================================================================
+
+        function companyDashboard() {
+            const companies = DB.companies();
+            const comp = companies.find(c => c.id === currentUser.id);
+            if (!comp) { logout(); return; }
+
+            let html = `
+                <h2>🏢 Company Dashboard</h2>
+                <div class="card">
+                    <div class="card-header">👤 Profile</div>
+                    <p><strong>ID:</strong> ${comp.id}</p>
+                    <p><strong>Name:</strong> ${comp.name}</p>
+                    <button class="btn btn-primary" onclick="companyEditProfile()">✏️ Edit</button>
+                </div>
+                <div class="card">
+                    <div class="card-header">💼 Management</div>
+                    <div class="flex flex-wrap gap-10">
+                        <button class="btn btn-success" onclick="companyPostJob()">📝 Post Job</button>
+                        <button class="btn btn-primary" onclick="companyViewMyJobs()">📋 My Jobs</button>
+                        <button class="btn btn-primary" onclick="companyViewApplicants()">👥 Applicants</button>
+                        <button class="btn btn-success" onclick="companyHire()">✅ Hire</button>
+                        <button class="btn btn-danger" onclick="companyReject()">❌ Reject</button>
+                    </div>
+                </div>
+            `;
+            showView(html);
+        }
+
+        function companyEditProfile() {
+            const companies = DB.companies();
+            const comp = companies.find(c => c.id === currentUser.id);
+            if (!comp) return;
+            showView(`
+                <h2>✏️ Edit Profile</h2>
+                <form onsubmit="companySaveProfile(event)">
+                    <div class="form-group"><label>Name</label><input type="text" id="compEditName" value="${comp.name}" required></div>
+                    <div class="form-group"><label>Password</label><input type="password" id="compEditPass" value="${comp.password}" required></div>
+                    <div class="flex flex-wrap gap-10">
+                        <button type="submit" class="btn btn-success">💾 Save</button>
+                        <button type="button" class="btn btn-outline" onclick="companyDashboard()">Cancel</button>
+                    </div>
+                </form>
+            `);
+        }
+
+        function companySaveProfile(e) {
+            e.preventDefault();
+            const companies = DB.companies();
+            const comp = companies.find(c => c.id === currentUser.id);
+            if (!comp) return;
+            comp.name = document.getElementById('compEditName').value;
+            comp.password = document.getElementById('compEditPass').value;
+            DB.saveCompanies(companies);
+            showAlert('✅ Profile updated!', 'success');
+            companyDashboard();
+        }
+
+        function companyPostJob() {
+            showView(`
+                <h2>📝 Post New Job</h2>
+                <form onsubmit="companySubmitJob(event)">
+                    <div class="form-group"><label>Title</label><input type="text" id="jobTitle" required></div>
+                    <div class="form-group"><label>Description</label><textarea id="jobDesc" required></textarea></div>
+                    <div class="form-group"><label>Requirements</label><textarea id="jobReq" required></textarea></div>
+                    <div class="flex flex-wrap gap-10">
+                        <button type="submit" class="btn btn-success">📤 Post</button>
+                        <button type="button" class="btn btn-outline" onclick="companyDashboard()">Cancel</button>
+                    </div>
+                </form>
+            `);
+        }
+
+        function companySubmitJob(e) {
+            e.preventDefault();
+            const title = document.getElementById('jobTitle').value;
+            const desc = document.getElementById('jobDesc').value;
+            const req = document.getElementById('jobReq').value;
+            const jobs = DB.jobs();
+            const id = DB.nextJobId();
+            jobs.push({ jobId: id, companyId: currentUser.id, title, desc, req, open: true });
+            DB.saveJobs(jobs);
+            showAlert(`✅ Job posted! ID: ${formatJobId(id)}`, 'success');
+            companyDashboard();
+        }
+
+        function companyViewMyJobs() {
+            const cid = currentUser.id;
+            const jobs = DB.jobs().filter(j => j.companyId === cid);
+            if (!jobs.length) {
+                showView(`<h2>📋 My Jobs</h2><p>No jobs.</p><button class="btn btn-outline" onclick="companyDashboard()">← Back</button>`);
+                return;
+            }
+            let html = `<h2>📋 My Jobs</h2><div class="table-wrap"><table>
+                <tr><th>Job ID</th><th>Title</th><th>Status</th><th>Action</th></tr>`;
+            jobs.forEach(j => {
+                const isFilled = DB.getJobApps(j.jobId).some(a => a.status === 'Selected');
+                const status = isFilled ? 'Position Filled' : (j.open ? 'Open' : 'Closed');
+                const cls = isFilled ? 'badge-filled' : (j.open ? 'badge-open' : 'badge-closed');
+                html += `<tr>
+                    <td>${formatJobId(j.jobId)}</td>
+                    <td>${j.title}</td>
+                    <td><span class="badge ${cls}">${status}</span></td>
+                    <td><button class="btn btn-danger btn-sm" onclick="companyDeleteJob(${j.jobId})">🗑️</button></td>
+                </tr>`;
+            });
+            html += `</table></div><button class="btn btn-outline" onclick="companyDashboard()">← Back</button>`;
+            showView(html);
+        }
+
+        function companyDeleteJob(jid) {
+            if (!confirm('Delete job ' + formatJobId(jid) + '?')) return;
+            let jobs = DB.jobs();
+            jobs = jobs.filter(j => j.jobId !== jid);
+            DB.saveJobs(jobs);
+            let apps = DB.applications();
+            apps = apps.filter(a => a.jobId !== jid);
+            DB.saveApplications(apps);
+            showAlert('✅ Job deleted.', 'success');
+            companyViewMyJobs();
+        }
+
+        function companyViewApplicants() {
+            const cid = currentUser.id;
+            const jobs = DB.jobs().filter(j => j.companyId === cid);
+            if (!jobs.length) {
+                showAlert('You have no jobs.', 'info');
+                companyDashboard();
+                return;
+            }
+            let html = `<h2>👥 View Applicants</h2><form onsubmit="companyShowApplicants(event)">
+                <div class="form-group"><label>Select Job</label><select id="appJobSelect">`;
+            jobs.forEach(j => {
+                html += `<option value="${j.jobId}">${formatJobId(j.jobId)} - ${j.title}</option>`;
+            });
+            html += `</select></div>
+                <div class="flex flex-wrap gap-10">
+                    <button type="submit" class="btn btn-primary">👥 View</button>
+                    <button type="button" class="btn btn-outline" onclick="companyDashboard()">Cancel</button>
+                </div>
+            </form>`;
+            showView(html);
+        }
+
+        function companyShowApplicants(e) {
+            e.preventDefault();
+            const jid = parseInt(document.getElementById('appJobSelect').value);
+            const apps = DB.getJobApps(jid);
+            if (!apps.length) {
+                showAlert('No applicants.', 'info');
+                companyDashboard();
+                return;
+            }
+            const students = DB.students();
+            const isFilled = apps.some(a => a.status === 'Selected');
+            let html = `<h2>👥 Applicants for Job ${formatJobId(jid)}</h2>`;
+            if (isFilled) html += `<div class="alert alert-success">✅ Position filled.</div>`;
+            html += `<div class="table-wrap"><table><tr><th>Student ID</th><th>Name</th><th>Result</th></tr>`;
+            apps.forEach(a => {
+                const stu = students.find(s => s.id === a.studentId);
+                let cls = 'badge-applied', label = a.status;
+                if (a.status === 'Selected') { cls = 'badge-selected'; }
+                else if (a.status === 'Rejected') { cls = 'badge-rejected'; }
+                html += `<tr>
+                    <td>${a.studentId}</td>
+                    <td>${stu ? stu.name : 'Unknown'}</td>
+                    <td><span class="badge ${cls}">${label}</span></td>
+                </tr>`;
+            });
+            html += `</table></div><button class="btn btn-outline" onclick="companyDashboard()">← Back</button>`;
+            showView(html);
+        }
+
+        // ---- Hire ----
+        function companyHire() {
+            const cid = currentUser.id;
+            const available = DB.jobs().filter(j => j.companyId === cid && j.open && !DB.getJobApps(j.jobId).some(a => a.status === 'Selected'));
+            if (!available.length) {
+                showAlert('No open jobs available to hire.', 'info');
+                companyDashboard();
+                return;
+            }
+            let html = `<h2>✅ Hire Applicant</h2><form onsubmit="companySubmitHire(event)">
+                <div class="form-group"><label>Student ID</label><input type="number" id="hireStudentId" required placeholder="Enter Student ID"></div>
+                <div class="form-group"><label>Job ID</label><select id="hireJobId">`;
+            available.forEach(j => {
+                html += `<option value="${j.jobId}">${formatJobId(j.jobId)} - ${j.title}</option>`;
+            });
+            html += `</select></div>
+                <div class="flex flex-wrap gap-10">
+                    <button type="submit" class="btn btn-success">✅ Hire</button>
+                    <button type="button" class="btn btn-outline" onclick="companyDashboard()">Cancel</button>
+                </div>
+            </form>`;
+            showView(html);
+        }
+
+        function companySubmitHire(e) {
+            e.preventDefault();
+            const sid = parseInt(document.getElementById('hireStudentId').value);
+            const jid = parseInt(document.getElementById('hireJobId').value);
+
+            const students = DB.students();
+            const stu = students.find(s => s.id === sid);
+            if (!stu) { showAlert('❌ Student not found!', 'error'); return; }
+            if (stu.placed) { showAlert('❌ Already placed!', 'error'); return; }
+
+            const job = DB.jobs().find(j => j.jobId === jid);
+            if (!job || !job.open || DB.getJobApps(jid).some(a => a.status === 'Selected')) {
+                showAlert('❌ Job unavailable!', 'error');
+                return;
+            }
+
+            const apps = DB.applications();
+            const app = apps.find(a => a.studentId === sid && a.jobId === jid);
+            if (!app) { showAlert('❌ Student not applied!', 'error'); return; }
+
+            app.status = 'Selected';
+            stu.placed = true;
+            job.open = false;
+            DB.saveApplications(apps);
+            DB.saveStudents(students);
+            DB.saveJobs(DB.jobs());
+            showAlert(`✅ Student ${sid} hired!`, 'success');
+            companyDashboard();
+        }
+
+        // ---- Reject ----
+        function companyReject() {
+            const cid = currentUser.id;
+            const jobs = DB.jobs().filter(j => j.companyId === cid);
+            if (!jobs.length) {
+                showAlert('You have no jobs.', 'info');
+                companyDashboard();
+                return;
+            }
+            let html = `<h2>❌ Reject Applicant</h2><form onsubmit="companySubmitReject(event)">
+                <div class="form-group"><label>Student ID</label><input type="number" id="rejectStudentId" required placeholder="Enter Student ID"></div>
+                <div class="form-group"><label>Job ID</label><select id="rejectJobId">`;
+            jobs.forEach(j => {
+                html += `<option value="${j.jobId}">${formatJobId(j.jobId)} - ${j.title}</option>`;
+            });
+            html += `</select></div>
+                <div class="flex flex-wrap gap-10">
+                    <button type="submit" class="btn btn-danger">❌ Reject</button>
+                    <button type="button" class="btn btn-outline" onclick="companyDashboard()">Cancel</button>
+                </div>
+            </form>`;
+            showView(html);
+        }
+
+        function companySubmitReject(e) {
+            e.preventDefault();
+            const sid = parseInt(document.getElementById('rejectStudentId').value);
+            const jid = parseInt(document.getElementById('rejectJobId').value);
+
+            const apps = DB.applications();
+            const app = apps.find(a => a.studentId === sid && a.jobId === jid);
+            if (!app) { showAlert('❌ Application not found!', 'error'); return; }
+            if (app.status === 'Selected' || app.status === 'Rejected') {
+                showAlert('❌ Already decided!', 'error');
+                return;
+            }
+            app.status = 'Rejected';
+            DB.saveApplications(apps);
+            showAlert(`✅ Applicant ${sid} rejected.`, 'success');
+            companyDashboard();
+        }
+
+        // ======================================================================
+        //   ADMIN DASHBOARD
+        // ======================================================================
+
+        function adminDashboard() {
+            if (!currentUser || currentUser.type !== 'admin') { logout(); return; }
+            const students = DB.students();
+            const companies = DB.companies();
+            const jobs = DB.jobs();
+            const apps = DB.applications();
+            const placed = students.filter(s => s.placed).length;
+            const pct = students.length ? ((placed / students.length) * 100).toFixed(1) : 0;
+
+            let html = `
+                <h2>⚙️ Admin Panel</h2>
+                <div class="grid-3">
+                    <div class="stat-card"><div class="number">${students.length}</div><div class="label">Students</div></div>
+                    <div class="stat-card"><div class="number">${companies.length}</div><div class="label">Companies</div></div>
+                    <div class="stat-card"><div class="number">${jobs.length}</div><div class="label">Jobs</div></div>
+                    <div class="stat-card"><div class="number">${apps.length}</div><div class="label">Applications</div></div>
+                    <div class="stat-card"><div class="number">${placed}</div><div class="label">Placed</div></div>
+                    <div class="stat-card"><div class="number">${pct}%</div><div class="label">Placement</div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">⚙️ Management</div>
+                    <div class="flex flex-wrap gap-10">
+                        <button class="btn btn-primary" onclick="adminViewStudents()">👨‍🎓 Students</button>
+                        <button class="btn btn-primary" onclick="adminViewCompanies()">🏢 Companies</button>
+                        <button class="btn btn-primary" onclick="adminViewJobs()">💼 Jobs</button>
+                        <button class="btn btn-danger" onclick="adminDeleteStudent()">🗑️ Del Student</button>
+                        <button class="btn btn-danger" onclick="adminDeleteCompany()">🗑️ Del Company</button>
+                        <button class="btn btn-danger" onclick="adminDeleteJob()">🗑️ Del Job</button>
+                        <button class="btn btn-success" onclick="adminGenerateReport()">📊 Report</button>
+                    </div>
+                </div>
+            `;
+            showView(html);
+        }
+
+        function adminViewStudents() {
+            const students = DB.students();
+            if (!students.length) { showAlert('No students.', 'info'); adminDashboard(); return; }
+            let html = `<h2>👨‍🎓 All Students</h2><div class="table-wrap"><table><tr><th>ID</th><th>Name</th><th>Dept</th><th>CGPA</th><th>Placed</th></tr>`;
+            students.forEach(s => {
+                html += `<tr><td>${s.id}</td><td>${s.name}</td><td>${s.dept}</td><td>${s.cgpa}</td><td>${s.placed ? '✅' : '❌'}</td></tr>`;
+            });
+            html += `</table></div><button class="btn btn-outline" onclick="adminDashboard()">← Back</button>`;
+            showView(html);
+        }
+
+        function adminViewCompanies() {
+            const companies = DB.companies();
+            if (!companies.length) { showAlert('No companies.', 'info'); adminDashboard(); return; }
+            let html = `<h2>🏢 All Companies</h2><div class="table-wrap"><table><tr><th>ID</th><th>Name</th></tr>`;
+            companies.forEach(c => {
+                html += `<tr><td>${c.id}</td><td>${c.name}</td></tr>`;
+            });
+            html += `</table></div><button class="btn btn-outline" onclick="adminDashboard()">← Back</button>`;
+            showView(html);
+        }
+
+        function adminViewJobs() {
+            const jobs = DB.jobs();
+            if (!jobs.length) { showAlert('No jobs.', 'info'); adminDashboard(); return; }
+            const companies = DB.companies();
+            let html = `<h2>💼 All Jobs</h2><div class="table-wrap"><table><tr><th>Job ID</th><th>Company</th><th>Title</th><th>Status</th></tr>`;
+            jobs.forEach(j => {
+                const comp = companies.find(c => c.id === j.companyId);
+                const isFilled = DB.getJobApps(j.jobId).some(a => a.status === 'Selected');
+                const status = isFilled ? 'Position Filled' : (j.open ? 'Open' : 'Closed');
+                const cls = isFilled ? 'badge-filled' : (j.open ? 'badge-open' : 'badge-closed');
+                html += `<tr><td>${formatJobId(j.jobId)}</td><td>${comp ? comp.name : 'Unknown'}</td><td>${j.title}</td><td><span class="badge ${cls}">${status}</span></td></tr>`;
+            });
+            html += `</table></div><button class="btn btn-outline" onclick="adminDashboard()">← Back</button>`;
+            showView(html);
+        }
+
+        function adminDeleteStudent() {
+            const id = prompt('Enter Student ID:');
+            if (!id) return;
+            let students = DB.students();
+            if (!students.find(s => s.id === parseInt(id))) { showAlert('Not found.', 'error'); return; }
+            if (!confirm('Delete student ' + id + '?')) return;
+            students = students.filter(s => s.id !== parseInt(id));
+            DB.saveStudents(students);
+            let apps = DB.applications();
+            apps = apps.filter(a => a.studentId !== parseInt(id));
+            DB.saveApplications(apps);
+            showAlert('✅ Deleted.', 'success');
+            adminDashboard();
+        }
+
+        function adminDeleteCompany() {
+            const id = prompt('Enter Company ID:');
+            if (!id) return;
+            let companies = DB.companies();
+            if (!companies.find(c => c.id === parseInt(id))) { showAlert('Not found.', 'error'); return; }
+            if (!confirm('Delete company ' + id + '?')) return;
+            companies = companies.filter(c => c.id !== parseInt(id));
+            DB.saveCompanies(companies);
+            let jobs = DB.jobs();
+            jobs = jobs.filter(j => j.companyId !== parseInt(id));
+            DB.saveJobs(jobs);
+            showAlert('✅ Deleted.', 'success');
+            adminDashboard();
+        }
+
+        function adminDeleteJob() {
+            const id = prompt('Enter Job ID:');
+            if (!id) return;
+            let jobs = DB.jobs();
+            if (!jobs.find(j => j.jobId === parseInt(id))) { showAlert('Not found.', 'error'); return; }
+            if (!confirm('Delete job ' + formatJobId(parseInt(id)) + '?')) return;
+            jobs = jobs.filter(j => j.jobId !== parseInt(id));
+            DB.saveJobs(jobs);
+            let apps = DB.applications();
+            apps = apps.filter(a => a.jobId !== parseInt(id));
+            DB.saveApplications(apps);
+            showAlert('✅ Deleted.', 'success');
+            adminDashboard();
+        }
+
+        function adminGenerateReport() {
+            const students = DB.students();
+            const companies = DB.companies();
+            const jobs = DB.jobs();
+            const apps = DB.applications();
+            const placed = students.filter(s => s.placed).length;
+            const pct = students.length ? ((placed / students.length) * 100).toFixed(1) : 0;
+            showView(`
+                <h2>📊 System Report</h2>
+                <div class="card">
+                    <p><strong>👨‍🎓 Students:</strong> ${students.length}</p>
+                    <p><strong>🏢 Companies:</strong> ${companies.length}</p>
+                    <p><strong>💼 Jobs:</strong> ${jobs.length}</p>
+                    <p><strong>📩 Applications:</strong> ${apps.length}</p>
+                    <p><strong>✅ Placed:</strong> ${placed}</p>
+                    <p><strong>📊 Placement:</strong> ${pct}%</p>
+                </div>
+                <button class="btn btn-outline" onclick="adminDashboard()">← Back</button>
+            `);
+        }
+
+        // ======================================================================
+        //   INIT
+        // ======================================================================
+
+        updateNav();
+
+        if (currentUser) {
+            if (currentUser.type === 'student') studentDashboard();
+            else if (currentUser.type === 'company') companyDashboard();
+            else if (currentUser.type === 'admin') adminDashboard();
+        }
+    </script>
+
+</body>
+
+</html>
